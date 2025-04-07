@@ -18,13 +18,14 @@ const HeaderwithFilter = ({ title, filterType, setfilterType }) => {
         {filterType !== "" ? (
           <>
             <MdFilterListOff  className="text-xl cursor-pointer"/>
+            Clear
           </>
         ) : (
           <>
             <IoFilterSharp className="text-xl cursor-pointer    " />
+            Filter
           </>
         )}
-        filter
       </button>
     </div>
     {

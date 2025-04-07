@@ -37,7 +37,7 @@ const Home = () => {
             ? res.data.polls
             : [...prevPolls, ...res.data.polls]
         );
-        setstats(res.data.stats || []);
+        setstats(res.data?.stats || []);
         sethasMore(res.data.polls.length === PAGE_SIZE);
       } else {
         sethasMore(false);
@@ -49,9 +49,6 @@ const Home = () => {
     }
   };
 
-  const loadMorePolls =()=>{
-    setPage((prevpage)=>prevpage + 1)
-   }
  
 useEffect(()=>{
   setPage(1)
@@ -61,7 +58,7 @@ useEffect(()=>{
 
 
 useEffect(()=>{
-   if(page > 1){
+   if(page !== 1){
      fetchAllPolls(page)
    }
   return ()=>{}
@@ -78,14 +75,14 @@ useEffect(()=>{
           filterType={filterType}
           setfilterType={setfilterType}
         />
-           {!allPolls.length > 0 && !loading && (
+           {/* {!allPolls.length > 0 && !loading && (
           <EmptyCard
             btnText="Create Poll"
             imgSrc={CREATE_IMG}
             message="Welcome you are the first user of the system and thier are no polls yet. start by creating the first poll"
             onClick={() => navigate("/create-poll")}
           />
-        )}
+        )} */}
 
 
         {

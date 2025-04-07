@@ -39,7 +39,7 @@ const PollCard = ({
 
   const isPollBookMarked = getPollBookMarekd(
     pollId,
-    user.bookmarkedPolls || []
+    user?.bookmarkedPolls || []
   );
 
   const [pollBookMarked, setpollBookMarked] = useState(isPollBookMarked);
