@@ -1,0 +1,14 @@
+FEATURES
+-Authentication
+-filter functionality - all, single choice , rating based , image based , open ended
+- bookmarks poll
+- vote and submit the poll 
+- create / delete poll
+
+
+Pages 
+Dashboard 
+Create poll
+my Polls
+Voted Polls
+Bookmarks
