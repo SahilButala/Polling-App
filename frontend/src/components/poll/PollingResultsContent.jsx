@@ -13,10 +13,10 @@ const OpenEndedPollResponse = ({
     <div className="flex  gap-3">
               {
                 profileImgUrl ? (
-                    <img src={profileImgUrl} alt="image"  className="w-8 h-8 rounded-full object-cover"/>
+                    <img src={profileImgUrl} alt="image"  className="w-8 h-8 rounded-full object-cover "/>
                 ) : (
                     <CharAvtar fullname={userFullname}
-                    style={"w-8 h-7 text-[10px] bg-sky-800/40"}
+                    style={"w-8 h-8 text-[10px] bg-sky-800/40"}
                     />
                 )
               }
@@ -26,7 +26,7 @@ const OpenEndedPollResponse = ({
                 <span className=" text-[10px text-slate-500]">{createdAt}</span>
               </p>
     </div>
-    <p className="text-xs text-slate-700 -mt-2 ml-[44px]">{response}</p>
+    <p className="text-xs text-slate-700 -mt-2 ml-[50px]">{response}</p>
     </div>
 };
 
