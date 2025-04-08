@@ -9,10 +9,12 @@ import { uploadImage } from "../../utils/UploadImage";
 import axiosInstance from "../../api/axiousInstance";
 import { API_PATHS } from "../../api/apiPaths";
 import { toast } from "react-toastify";
+import { LuLoader } from "react-icons/lu";
 
 const CreatePoll = () => {
   useUserAuth();
-  const { user,onPollCreateOrDelete } = useContext(UserContext);
+  const { user, onPollCreateOrDelete } = useContext(UserContext);
+  const [loading, setloading] = useState(false);
 
   const [pollData, setPollData] = useState({
     question: "",
@@ -35,10 +37,13 @@ const CreatePoll = () => {
   const upadteImageAndGetLink = async (imageOptions) => {
     const optionPromises = imageOptions.map(async (imageoption) => {
       try {
+        setloading(true)
         const imgUploadRes = await uploadImage(imageoption.file);
         return imgUploadRes.imageUrl || "";
       } catch (error) {
         console.log(`Error uploading image : ${imageoption.file.name}`);
+      }finally{
+        setloading(false)
       }
     });
 
@@ -77,9 +82,10 @@ const CreatePoll = () => {
       handleValueChange("error", "select at least two images");
       return;
     }
-    handleValueChange("error","")
+    handleValueChange("error", "");
     const optionData = await getOptions();
     try {
+      setloading(true);
       const res = await axiosInstance.post(API_PATHS.POLLS.CREATE, {
         question,
         type,
@@ -89,14 +95,16 @@ const CreatePoll = () => {
 
       if (res) {
         toast.success("Poll Created Successfully");
-        clearData()
-        onPollCreateOrDelete()
+        clearData();
+        onPollCreateOrDelete();
       }
     } catch (error) {
-       if (error.response && error.response.data.message) {
+      if (error.response && error.response.data.message) {
         toast.error(error.response.data.message);
-        handleValueChange("error",error.response.data.message)
-      } 
+        handleValueChange("error", error.response.data.message);
+      }
+    } finally {
+      setloading(false);
     }
   };
 
@@ -106,7 +114,6 @@ const CreatePoll = () => {
       [key]: value,
     }));
   };
-
 
   return (
     <DashBoardLayout activeMenue={"Create Poll"}>
@@ -184,12 +191,19 @@ const CreatePoll = () => {
           </p>
         )}
 
-        <button
-          onClick={handleToCreatePoll}
-          className="btn-primary mt-6 font-normal uppercase"
-        >
-          Create Poll
-        </button>
+        {loading ? (
+          <button className="btn-primary mt-6 font-normal    flex items-center gap-2 justify-center">
+            <LuLoader size={"20"} className="'h-4 w-4 animate-spin'" />
+            please wait...
+          </button>
+        ) : (
+          <button
+            onClick={handleToCreatePoll}
+            className="btn-primary mt-6 font-normal uppercase"
+          >
+            Create Poll
+          </button>
+        )}
       </div>
     </DashBoardLayout>
   );

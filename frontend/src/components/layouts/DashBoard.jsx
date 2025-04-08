@@ -16,6 +16,8 @@ const DashBoardLayout = ({ children, activeMenue,stats ,showStats}) => {
         </div>
         <div className="mx-5 grow">{children}</div>
 
+    
+
         <div>
           <div className="hidden md:block mr-5">
             <UserDetails

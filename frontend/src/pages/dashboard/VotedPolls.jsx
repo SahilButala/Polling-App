@@ -47,6 +47,9 @@ const VotedPolls = () => {
     <DashBoardLayout activeMenue="Voted Polls">
       <div className="my-5 mx-auto">
         <h2 className="text-xl font-medium text-black">Voted Polls</h2>
+        {
+           loading && <h2 className="text-[18px] font-medium text-center mt-6">Loading....</h2>
+        }
 
         {votedPolss.length === 0 && !loading && (
           <EmptyCard

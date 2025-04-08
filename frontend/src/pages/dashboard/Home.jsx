@@ -85,6 +85,10 @@ useEffect(()=>{
           />
         )} */}
 
+{
+           loading && <h2 className="text-[18px] font-medium text-center mt-6">Loading....</h2>
+        }
+
 
         {
           allPolls.map((poll,i)=>(

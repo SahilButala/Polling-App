@@ -21,8 +21,8 @@ const MyPolls = () => {
   const [loading, setloading] = useState(false);
   const [filterType, setfilterType] = useState("");
   const navigate = useNavigate();
-  const { user , onPollCreateOrDelete } = useContext(UserContext);
- 
+  const { user, onPollCreateOrDelete } = useContext(UserContext);
+
   const fetchAllPolls = async (overridepage = page) => {
     if (loading) return;
     setloading(true);
@@ -31,7 +31,7 @@ const MyPolls = () => {
         `${API_PATHS.POLLS.GET_ALL_POLLS}?page=${overridepage}&limit=${PAGE_SIZE}&type=${filterType}&creatorId=${user?._id}`
       );
 
-      if (res.data?.polls?.length > 0) { 
+      if (res.data?.polls?.length > 0) {
         setallPolls((prevPolls) =>
           overridepage === 1
             ? res.data.polls
@@ -59,8 +59,6 @@ const MyPolls = () => {
     return () => {};
   }, [filterType]);
 
-
-
   useEffect(() => {
     if (page > 1) {
       fetchAllPolls(page);
@@ -76,6 +74,12 @@ const MyPolls = () => {
           filterType={filterType}
           setfilterType={setfilterType}
         />
+
+        {loading && (
+          <h2 className="text-[18px] font-medium text-center mt-6">
+            Loading....
+          </h2>
+        )}
 
         {allPolls.length === 0 && !loading && (
           <EmptyCard
