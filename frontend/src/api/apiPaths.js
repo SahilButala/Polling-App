@@ -1,6 +1,6 @@
 // export const BASE_URL = "https://polling-backend-app.vercel.app";
-// export const BASE_URL = "https://polling-backend-app.onrender.com";
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "https://polling-backend-app.onrender.com";
+// export const BASE_URL = "http://localhost:3000";
 
 // utils api paths
 export const API_PATHS = {
