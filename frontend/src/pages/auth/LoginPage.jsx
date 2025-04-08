@@ -8,15 +8,13 @@ import { API_PATHS } from "../../api/apiPaths";
 import { toast } from "react-toastify";
 import { UserContext } from "../../context/UserContext";
 
-
 // import { LoginUserService } from "../../services/ApiServices";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [error, seterror] = useState("");
-  const {updateUser} = useContext(UserContext)
-
+  const { updateUser, setauth } = useContext(UserContext);
 
   // all functions
   const handleLogin = async (e) => {
@@ -27,7 +25,7 @@ const LoginPage = () => {
       seterror("please enter correct or valid email address");
       return;
     }
-   // validate password
+    // validate password
     if (!password) {
       seterror("please enter the password");
       return;
@@ -40,21 +38,21 @@ const LoginPage = () => {
         email,
         password,
       });
-      
-      
+
       // set up token
       const { token } = res.data;
       if (res.data.success) {
+        setauth({
+          isAuthenticated: true,
+        });
         toast.success(res.data.message);
-        updateUser(res?.data?.user)
+        updateUser(res?.data?.user);
       }
-      
+
       if (token) {
         localStorage.setItem("token", token);
         navigate("/dashboard");
       }
-
-
     } catch (error) {
       if (error.response && error.response.data.message) {
         seterror(error.response.data.message);

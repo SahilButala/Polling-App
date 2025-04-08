@@ -6,7 +6,8 @@ import axiosInstance from "../../api/axiousInstance";
 import { API_PATHS } from "../../api/apiPaths";
 import PollCard from "../../components/poll/PollCard/PollCard";
 import EmptyCard from "../../components/EmptyCard";
-import CREATE_IMG from "../../../assets/create.png";
+import bookmarkImg from "../../../assets/bookMark.png";
+import { useNavigate } from "react-router-dom";
 
 const BookMarks = () => {
   useUserAuth();
@@ -16,6 +17,7 @@ const BookMarks = () => {
   const [page, setPage] = useState(1);
   const [hasMore, sethasMore] = useState(true);
   const [loading, setloading] = useState(false);
+  const navigate = useNavigate()
 
   const fetchAllPolls = async () => {
     if (loading) return;
@@ -50,9 +52,10 @@ const BookMarks = () => {
 
         {BookMarksPolls.length === 0 && !loading && (
           <EmptyCard
-            imgSrc={CREATE_IMG}
+            imgSrc={bookmarkImg}
             message="Welcome you are the first user of the system and thier are no polls BookMarked"
-            onClick={() => navigate("/create-poll")}
+              btnText={"Explore"}
+            onClick={() => navigate("/dashboard")}
           />
         )}
 

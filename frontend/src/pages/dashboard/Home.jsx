@@ -68,14 +68,15 @@ useEffect(()=>{
 
 
   return (
-    <DashBoardLayout activeMenue="Dashboard">
+    <DashBoardLayout activeMenue="Dashboard" stats={stats || []} showStats>
       <div className="my-5 mx-auto">
         <HeaderwithFilter
           title="Polls"
           filterType={filterType}
           setfilterType={setfilterType}
         />
-           {/* {!allPolls.length > 0 && !loading && (
+      
+           {/* {allPolls.length === 0 && !loading && (
           <EmptyCard
             btnText="Create Poll"
             imgSrc={CREATE_IMG}

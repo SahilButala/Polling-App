@@ -1,10 +1,13 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext(null);
 
 export const UserContextProvider = ({ children }) => {
   const [user, setuser] = useState(null);
-
+   const [auth,setauth] = useState({
+      isAuthenticated : false
+   })
+   console.log("user",auth)
   // update user
   const updateUser = (userData)=>{
      setuser(userData)
@@ -38,6 +41,13 @@ const onUserVoted = ()=>{
   //             type === "create" ? totalPollsCreated + 1 : totalPollsCreated -1 
   //           )
   // }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setauth({ isAuthenticated: true });
+    }
+  }, []);
 
   const onPollCreateOrDelete = (type = "create") => {
     if (!user) return;
@@ -78,7 +88,7 @@ const onUserVoted = ()=>{
   }
   }
   return (
-    <UserContext.Provider value={{user,clearUser,updateUser,onPollCreateOrDelete,onUserVoted,toogleBookMarkedId}}>
+    <UserContext.Provider value={{user,clearUser,updateUser,onPollCreateOrDelete,onUserVoted,toogleBookMarkedId,auth,setauth}}>
         {children}
     </UserContext.Provider>
   );

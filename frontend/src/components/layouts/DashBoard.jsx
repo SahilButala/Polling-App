@@ -3,8 +3,9 @@ import Navbar from "../Navbar";
 import SideBarMenue from "../SideBarMenue";
 import UserDetails from "../UserDetails";
 import { UserContext } from "../../context/UserContext";
+import TrendingPoll from "../TrendingPoll";
 
-const DashBoardLayout = ({ children, activeMenue }) => {
+const DashBoardLayout = ({ children, activeMenue,stats ,showStats}) => {
   const { user } = useContext(UserContext);
   return (
     <div>
@@ -18,6 +19,7 @@ const DashBoardLayout = ({ children, activeMenue }) => {
         <div>
           <div className="hidden md:block mr-5">
             <UserDetails
+              
               profileImageUrl={user && user?.profileImageUrl}
               fullname={user && user?.fullname}
               username={user && user?.username}
@@ -25,6 +27,10 @@ const DashBoardLayout = ({ children, activeMenue }) => {
               totalPollsBookmarked={user && user?.totalPollsBookmarked}
               totalPollsCreated={user && user?.totalPollsCreated}
             />
+
+            {
+              showStats && stats?.length > 0 && <TrendingPoll stats={stats}/>               
+              }
           </div>
         </div>
       </div>

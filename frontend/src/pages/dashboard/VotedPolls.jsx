@@ -7,6 +7,7 @@ import { API_PATHS } from "../../api/apiPaths";
 import PollCard from "../../components/poll/PollCard/PollCard";
 import EmptyCard from "../../components/EmptyCard";
 import CREATE_IMG from "../../../assets/create.png";
+import { useNavigate } from "react-router-dom";
 
 const VotedPolls = () => {
   useUserAuth();
@@ -16,6 +17,7 @@ const VotedPolls = () => {
   const [page, setPage] = useState(1);
   const [hasMore, sethasMore] = useState(true);
   const [loading, setloading] = useState(false);
+  const navigate = useNavigate()
 
   const fetchAllPolls = async () => {
     if (loading) return;
