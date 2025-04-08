@@ -25,7 +25,15 @@ function App() {
     <div>
       <Router>
         <Routes>
-          {/* <Route path="/" element={<Root />} /> */}
+          <Route
+            path=""
+            element={
+              <RouteGuard
+                element={<Home />}
+                authenticated={auth.isAuthenticated}
+              />
+            }
+          />
 
           <Route
             path="/login"
@@ -45,11 +53,12 @@ function App() {
               />
             }
           />
-          <Route path="/sign-up" 
+          <Route
+            path="/sign-up"
             element={
               <RouteGuard
-              authenticated={auth.isAuthenticated}
-              element={<SigneUp />} 
+                authenticated={auth.isAuthenticated}
+                element={<SigneUp />}
               />
             }
           />
