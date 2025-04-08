@@ -1,4 +1,5 @@
-export const BASE_URL = "https://polling-backend-app.vercel.app";
+// export const BASE_URL = "https://polling-backend-app.vercel.app";
+export const BASE_URL = "https://polling-backend-app.onrender.com";
 
 // utils api paths
 export const API_PATHS = {
