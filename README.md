@@ -3,6 +3,9 @@
 A full-stack MERN polling application that allows users to create, vote on, and manage polls of various types. This app provides a secure, interactive platform where users can participate in real-time decision-making with a clean, intuitive interface.
 
 ---
+## 🔗 Live Website
+
+🌐 [Visit the App](https://polling-frontend-app.onrender.com)
 
 ## 🚀 Features
 
@@ -60,8 +63,5 @@ A full-stack MERN polling application that allows users to create, vote on, and 
 
 ---
 
-## 🔗 Live Website
-
-🌐 [Visit the App](https://polling-frontend-app.onrender.com)
 
 ---
